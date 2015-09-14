@@ -31,11 +31,33 @@
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <checkoutDirectory>${project.build.outputDirectory}/data/</checkoutDirectory>
+              <checkoutDirectory>${project.build.directory}/checkout/</checkoutDirectory>
               <connectionUrl>scm:git:https://spotlite.nih.gov/ncats/opdsr.git</connectionUrl>
               <scmVersionType>branch</scmVersionType>
               <scmVersion>master</scmVersion>
               <includes>rdf/data/*</includes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.7</version>
+        <executions>
+          <execution>
+            <id>copy-extracted</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.outputDirectory}/data/${project.artifactId}/</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.build.directory}/checkout/rdf/data/</directory>
+                </resource>
+              </resources>
             </configuration>
           </execution>
         </executions>
