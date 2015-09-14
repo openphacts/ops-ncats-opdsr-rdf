@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.openphacts.data</groupId>
+  <artifactId>ops-ncats-opdsr-rdf</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <name>NCATS OPDSR RDF</name>
+  <description>Open PHACTS wrapping of NCATS Open Phenotypic Drug Screening Resource RDF</description>
+  <url>https://spotlite.nih.gov/ncats/opdsr</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <licenses>
+    <license>
+      <name>unknown</name>
+      <url>https://spotlite.nih.gov/ncats/opdsr/tree/master/rdf/data</url>
+    </license>
+  </licenses>
+
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-scm-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>checkout</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <checkoutDirectory>${project.build.outputDirectory}/data/</checkoutDirectory>
+              <connectionUrl>scm:git:https://spotlite.nih.gov/ncats/opdsr.git</connectionUrl>
+              <scmVersionType>branch</scmVersionType>
+              <scmVersion>master</scmVersion>
+              <includes>rdf/data/*</includes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>ops</id>
+      <name>Open PHACTS repository</name>
+      <url>http://repository.mygrid.org.uk/artifactory/ops/</url>
+      <releases />
+      <snapshots />
+    </repository>
+  </repositories>
+
+  <distributionManagement>
+    <repository>
+      <id>ops</id>
+      <name>Open PHACTS repository</name>
+      <url>http://repository.mygrid.org.uk/artifactory/ops/</url>
+    </repository>
+    <snapshotRepository>
+      <id>ops</id>
+      <name>Open PHACTS repository</name>
+      <url>http://repository.mygrid.org.uk/artifactory/ops/</url>
+    </snapshotRepository>
+  </distributionManagement>
+</project>
